@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#TeamWater</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@100..900&family=Sora:wght@100..800&display=swap');
+
+    body {
+      background-image: url("wmremove-transformed.png");
+      background-repeat: repeat-y;
+      background-size: contain;
+      font-family: "Bungee", sans-serif;
+      min-height: 100vh;
+    }
+
+    .text-blue {
+      color: #0335C1;
+    }
+
+    .b-blue {
+      background-color: #0335C1;
+    }
+
+    .custom-text-m {
+      font-size: max(4.3vw, 30px);
+    }
+
+    .custom-text-l {
+      font-size: max(5.2vw, 30px);
+    }
+
+    .font-sora {
+      font-family: "Sora", sans-serif;
+    }
+
+    #other-amount::placeholder {
+      padding-left: 10px;
+      color: black;
+      font-weight: bold;
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .selected-option {
+      border: 2px solid #0335C1 !important;
+      background-color: #e6f0ff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="py-5" id="step1">
+      <div class="d-flex align-items-center justify-content-center">
+        <img src="Team_water_logo.png" alt="" width="150px">
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <h1 class="custom-text-m font-sora fw-normal text-white">
+          #TEAM<span class="fw-bolder">WATER</span>
+        </h1>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <p class="font-sora fs-5 text-center fw-bold text-blue">
+          Raising $40M to give 2 million people clean <br> water for decades
+        </p>
+      </div>
+      <div class="d-flex align-items-center justify-content-center custom-text-l text-blue">
+        10,141,221
+      </div>
+      <div class="d-flex align-items-center justify-content-center text-blue fs-4">
+        Years of water supplied
+      </div>
+      <div class="form-box bg-white rounded-3 px-3 mt-4 mx-auto" style="max-width: 460px;">
+        <div class="border-bottom border-2 border-primary d-flex align-items-center justify-content-center py-3">
+          <h2 class="fs-4 p-0 m-0 text-blue">Donate to #teamwater</h2>
+        </div>
+        <div class="d-flex align-items-center justify-content-center py-2 m-0">
+          <p class="font-sora fs-6 text-center">$1 gives one person clean water for a year</p>
+        </div>
+        <div>
+          <p class="text-center fs-6 fw-semibold font-sora">Credit Card & PayPal Donations</p>
+          <div class="d-flex align-items-center justify-content-center column-gap-2 font-sora fw-bold">
+            <div class="flex-fill border border-1 border-primary d-flex align-items-center pointer justify-content-center rounded-3 amount-option" style="height: 70px;">$10</div>
+            <div class="flex-fill border border-1 border-primary d-flex align-items-center justify-content-center rounded-3 pointer amount-option" style="height: 70px;">$25</div>
+            <div class="flex-fill border border-1 border-primary d-flex align-items-center justify-content-center rounded-3 pointer amount-option" style="height: 70px;">$100</div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center column-gap-2 py-2 font-sora fw-bold">
+            <div class="border border-1 border-primary d-flex align-items-center justify-content-center rounded-3 pointer amount-option" style="height: 70px; width: 132px;">$500</div>
+            <input type="text" id="other-amount" class="px-3 border border-1 border-primary d-flex align-items-center justify-content-center rounded-3 flex-fill pointer" style="height: 70px; width: 112px; outline: none;" placeholder="Other amount">
+          </div>
+          <div class="d-flex align-items-center justify-content-center column-gap-2 py-4">
+            <button class="border-0 rounded-5 text-white fs-5 p-3 px-5 b-blue" onclick="goToStep2()">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 hidden" id="step2">
+      <div class="form-box bg-white rounded-3 px-3 mt-4 mx-auto" style="max-width: 460px;">
+        <div class="d-flex align-items-center justify-content-center py-3">
+          <h2 class="fs-4 p-0 m-0 text-blue">Select Payment Method</h2>
+        </div>
+        <div class="d-grid gap-2 px-3 py-2">
+          <button class="btn btn-outline-dark payment-btn" data-method="Crypto">Crypto</button>
+          <button class="btn btn-outline-dark payment-btn" data-method="PayPal">PayPal</button>
+          <button class="btn btn-outline-dark payment-btn" data-method="Bank Transfer">Bank Transfer</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center column-gap-2 py-4">
+          <button class="border-0 rounded-5 text-white fs-5 p-3 px-5 b-blue" onclick="submitDonation()">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 hidden" id="step3">
+      <div class="form-box bg-white rounded-3 px-3 mt-4 mx-auto text-center" style="max-width: 460px;">
+        <h4 class="text-blue mb-3">Thank you!</h4>
+        <p class="font-sora">You selected <strong id="selectedMethod"></strong> to donate <strong id="selectedAmount"></strong>.</p>
+        <p class="font-sora">We'll guide you to complete your payment shortly.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let donationAmount = "";
+    let paymentMethod = "";
+
+    document.querySelectorAll('.amount-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        donationAmount = btn.innerText.replace('$', '');
+        document.getElementById('other-amount').value = "";
+        document.querySelectorAll('.amount-option').forEach(el => el.classList.remove('selected-option'));
+        btn.classList.add('selected-option');
+      });
+    });
+
+    document.getElementById('other-amount').addEventListener('input', function () {
+      donationAmount = this.value;
+      document.querySelectorAll('.amount-option').forEach(el => el.classList.remove('selected-option'));
+    });
+
+    document.querySelectorAll('.payment-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        paymentMethod = btn.getAttribute('data-method');
+        document.querySelectorAll('.payment-btn').forEach(el => el.classList.remove('selected-option'));
+        btn.classList.add('selected-option');
+      });
+    });
+
+    function goToStep2() {
+      if (!donationAmount || parseFloat(donationAmount) <= 0) {
+        alert("Please select or enter a valid donation amount.");
+        return;
+      }
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function submitDonation() {
+      if (!paymentMethod) {
+        alert("Please choose a payment method.");
+        return;
+      }
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+      document.getElementById('selectedMethod').textContent = paymentMethod;
+      document.getElementById('selectedAmount').textContent = "$" + donationAmount;
+    }
+  </script>
+</body>
+</html>
